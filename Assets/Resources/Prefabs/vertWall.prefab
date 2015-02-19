@@ -11,7 +11,7 @@ GameObject:
   - 212: {fileID: 21212732}
   - 61: {fileID: 6166106}
   m_Layer: 8
-  m_Name: vert_wall
+  m_Name: vertWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
