@@ -7,7 +7,7 @@ public class BallController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		rigidbody2D.velocity = new Vector2 (2, 2);
+		GetComponent<Rigidbody2D>().velocity = new Vector2 (2, 2);
 	}
 	
 	// Update is called once per frame
@@ -19,23 +19,23 @@ public class BallController : MonoBehaviour {
 		Vector2 vel;
 
 		if (col.gameObject.name == "horizWall") {
-			vel = new Vector2(rigidbody2D.velocity.x, rigidbody2D.velocity.y * -1);
-			rigidbody2D.velocity = vel;
+			vel = new Vector2(GetComponent<Rigidbody2D>().velocity.x, GetComponent<Rigidbody2D>().velocity.y * -1);
+			GetComponent<Rigidbody2D>().velocity = vel;
 		}
 
 		if (col.gameObject.name == "vertWall") {
-			vel = new Vector2(rigidbody2D.velocity.x * -1, rigidbody2D.velocity.y);
-			rigidbody2D.velocity = vel;
+			vel = new Vector2(GetComponent<Rigidbody2D>().velocity.x * -1, GetComponent<Rigidbody2D>().velocity.y);
+			GetComponent<Rigidbody2D>().velocity = vel;
 		}
-		print (col.gameObject.name);
+
 		if (col.gameObject.name == "attackHitbox(Clone)") {
-			speed++;
+			speed += 2;
 			Vector2 dir = new Vector2(this.transform.position.x - col.gameObject.transform.position.x, 
 			                          this.transform.position.y - col.gameObject.transform.position.y);
 			dir.Normalize ();
 			dir.x *= speed;
 			dir.y *= speed;
-			this.rigidbody2D.velocity = dir;
+			this.GetComponent<Rigidbody2D>().velocity = dir;
 		}
 	}
 }

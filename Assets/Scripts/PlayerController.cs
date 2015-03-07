@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour {
 		attackHitbox = (GameObject)Instantiate (Resources.Load ("Prefabs/attackHitbox"), this.transform.position, Quaternion.identity);
 		attackHitbox.transform.parent = this.transform;
 		attackHitbox.transform.localPosition = Vector2.zero;
-		attackHitbox.collider2D.enabled = false;
+		attackHitbox.GetComponent<Collider2D>().enabled = false;
 	}
 
 	// Update is called once per frame
@@ -43,11 +43,11 @@ public class PlayerController : MonoBehaviour {
 			pos = new Vector2(pos.x - speed, pos.y);
 		}
 
-		attackHitbox.collider2D.enabled = false;
+		attackHitbox.GetComponent<Collider2D>().enabled = false;
 
 		if (Input.GetKey (keyAttack) && chargeTime <= 0) {
-			attackHitbox.collider2D.enabled = true;
-			chargeTime = 50;
+			attackHitbox.GetComponent<Collider2D>().enabled = true;
+			chargeTime = 20;
 			print ("charged");
 		} else {
 			if (chargeTime > 0) {
@@ -72,6 +72,7 @@ public class PlayerController : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D col) {
 		if (col.gameObject.name == "ball") {
+			Destroy (this.attackHitbox);
 			Destroy (this);
 		}
 	}
